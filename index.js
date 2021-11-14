@@ -9,6 +9,9 @@ const app = express();
 mongoose.connect('mongodb://localhost/rapoogo')
 mongoose.Promise = global.Promise
 
+//middleware for static html fules
+app.use(express.static('public'))
+
 //middlewares
 app.use(bodyParser.json())
 
