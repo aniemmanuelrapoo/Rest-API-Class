@@ -1,6 +1,18 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
+//create Geolocation schema
+const GeoSchema = new Schema({
+    type: {
+        type: String,
+        default: "Point"
+    },
+    coordinates: {
+        type: [Number],
+        index: "2dsphere"
+    }
+})
+
 //create rapoo Schema and model
 const RapooSchema = new Schema({
     name: {
@@ -13,9 +25,8 @@ const RapooSchema = new Schema({
     available: {
         type: Boolean,
         default: false
-    }
-
-    //add in geo location
+    },
+    geometry: GeoSchema
 })
 
 const Rapoo = mongoose.model('rapoo', RapooSchema);
